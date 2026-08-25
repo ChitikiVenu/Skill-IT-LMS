@@ -1,0 +1,3 @@
+import { BookOpen, CircleHelp, PlayCircle } from "lucide-react";
+import { PortalPage } from "../../../components/student-portal/PortalPage";
+export default function LessonPage() { return <PortalPage eyebrow="Lesson workspace" title="Lesson" description="Video, reading, practice, and AI guidance will be connected in Stage 2." actionLabel="Back to courses" actionHref="/courses" items={[{title:"Lesson content",detail:"Structured content and technical explanations will render here.",value:"Coming soon",Icon:BookOpen},{title:"Practice activity",detail:"Reinforce your understanding through integrated activities.",value:"Planned",Icon:PlayCircle},{title:"Need help?",detail:"The AI tutor will offer contextual, guided support.",value:"Stage 2+",Icon:CircleHelp}]} />; }

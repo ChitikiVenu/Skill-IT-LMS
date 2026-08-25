@@ -1,0 +1,3 @@
+import { CheckSquare, CircleHelp, Target } from "lucide-react";
+import { PortalPage } from "../../components/student-portal/PortalPage";
+export default function QuizzesPage() { return <PortalPage eyebrow="Assess understanding" title="Quizzes" description="Check your knowledge and see the areas that deserve another pass." actionLabel="Start checkpoint" actionHref="/quizzes" items={[{title:"Cyber Security Checkpoint",detail:"A focused knowledge check on networking and security fundamentals.",value:"15 min",Icon:Target},{title:"Linux Foundations",detail:"Review commands, permissions, and system fundamentals.",value:"Available",Icon:CheckSquare},{title:"Python Concepts",detail:"Practice your readiness for the next AI engineering module.",value:"New",Icon:CircleHelp}]} />; }

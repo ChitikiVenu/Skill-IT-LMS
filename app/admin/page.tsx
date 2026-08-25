@@ -1,0 +1,3 @@
+import { BarChart3, Settings, UserRound } from "lucide-react";
+import { PortalPage } from "../../components/student-portal/PortalPage";
+export default function AdminPage() { return <PortalPage eyebrow="Administrative workspace" title="Admin portal" description="Administration tools will be secured and connected in a later stage." actionLabel="Student dashboard" actionHref="/dashboard" items={[{title:"Learner management",detail:"Review learner accounts and learning activity.",value:"Future stage",Icon:UserRound},{title:"Platform analytics",detail:"Monitor course performance and platform engagement.",value:"Future stage",Icon:BarChart3},{title:"Platform settings",detail:"Manage curriculum and operational preferences.",value:"Future stage",Icon:Settings}]} />; }

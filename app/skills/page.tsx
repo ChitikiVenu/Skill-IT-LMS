@@ -1,0 +1,3 @@
+import { BarChart3, Trophy, Zap } from "lucide-react";
+import { PortalPage } from "../../components/student-portal/PortalPage";
+export default function SkillsPage() { return <PortalPage eyebrow="Measure growth" title="Skill score" description="Your cumulative score reflects knowledge, practice, projects, and consistency." actionLabel="Review score details" actionHref="/skills" items={[{title:"Overall skill score",detail:"Your current position across all learning activity.",value:"824 / 1000",Icon:Trophy},{title:"Practical skills",detail:"Hands-on lab performance and technical execution.",value:"Strong",Icon:Zap},{title:"Knowledge growth",detail:"Coursework and assessment understanding across your tracks.",value:"On track",Icon:BarChart3}]} />; }

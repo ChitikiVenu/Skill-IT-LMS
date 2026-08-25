@@ -1,0 +1,3 @@
+import { Award, BookOpen, UserRound } from "lucide-react";
+import { PortalPage } from "../../components/student-portal/PortalPage";
+export default function ProfilePage() { return <PortalPage eyebrow="Your account" title="Profile" description="Manage the learning profile that will personalize your future experience." actionLabel="Update profile" actionHref="/profile" items={[{title:"Venu",detail:"Student profile and public learning identity.",value:"Technical learner",Icon:UserRound},{title:"Learning tracks",detail:"Cyber Security, SOC, AI/ML, and Data Science interests.",value:"4 selected",Icon:BookOpen},{title:"Achievements",detail:"Your completed milestones and earned credentials appear here.",value:"Growing",Icon:Award}]} />; }

@@ -1,0 +1,3 @@
+import { Award, Medal, Trophy } from "lucide-react";
+import { PortalPage } from "../../components/student-portal/PortalPage";
+export default function AchievementsPage() { return <PortalPage eyebrow="Celebrate progress" title="Achievements" description="Your learning streaks, milestones, and technical wins will be collected here." actionLabel="Explore learning path" actionHref="/learning-path" items={[{title:"Learning streak",detail:"Keep returning to build a consistent technical practice habit.",value:"12 days",Icon:Trophy},{title:"Lab explorer",detail:"Complete hands-on labs to unlock practical learning milestones.",value:"17 labs",Icon:Medal},{title:"Course progress",detail:"Earn milestones as you complete core course experiences.",value:"4 active",Icon:Award}]} />; }

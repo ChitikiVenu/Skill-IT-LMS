@@ -1,0 +1,3 @@
+import { Bell, LockKeyhole, Settings } from "lucide-react";
+import { PortalPage } from "../../components/student-portal/PortalPage";
+export default function SettingsPage() { return <PortalPage eyebrow="Preferences" title="Settings" description="Configure your learning preferences and account settings." actionLabel="Manage preferences" actionHref="/settings" items={[{title:"Learning preferences",detail:"Choose how you want reminders and recommendations to support your goals.",value:"Configured",Icon:Settings},{title:"Notifications",detail:"Control class, assignment, learning streak, and course updates.",value:"Enabled",Icon:Bell},{title:"Account security",detail:"Authentication and security controls will arrive in Stage 2.",value:"Stage 2",Icon:LockKeyhole}]} />; }
