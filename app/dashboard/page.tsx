@@ -16,10 +16,28 @@ const courses = [
 ];
 
 const nav = [
-  ["Overview", LayoutDashboard], ["My Courses", BookOpen], ["Learning Path", Target],
-  ["Labs", FlaskConical], ["Assignments", CheckCircle2], ["Projects", Code2],
-  ["Skill Score", Trophy], ["Certificates", Award],
-] as const;
+  { label: "Overview", Icon: LayoutDashboard },
+  { label: "My Courses", Icon: BookOpen },
+  { label: "Learning Path", Icon: Target },
+  { label: "Labs", Icon: FlaskConical },
+  { label: "Assignments", Icon: CheckCircle2 },
+  { label: "Projects", Icon: Code2 },
+  { label: "Skill Score", Icon: Trophy },
+  { label: "Certificates", Icon: Award },
+];
+
+const stats = [
+  { label: "Courses", value: "4", sub: "2 active now", Icon: BookOpen },
+  { label: "Lessons", value: "48/65", sub: "17 remaining", Icon: Play },
+  { label: "Labs", value: "17/24", sub: "3 recommended", Icon: FlaskConical },
+  { label: "Attendance", value: "92%", sub: "On track", Icon: CalendarDays },
+];
+
+const nextActions = [
+  { name: "Complete SIEM Log Analysis", time: "25 min", Icon: FlaskConical },
+  { name: "Practice 10 Python problems", time: "35 min", Icon: Code2 },
+  { name: "Take Cyber Security checkpoint", time: "15 min", Icon: Target },
+];
 
 export default function DashboardPage() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -35,7 +53,7 @@ export default function DashboardPage() {
         </div>
         <div className="profile-mini"><div className="avatar">V</div><div><strong>Venu</strong><span>Student</span></div></div>
         <nav className="side-nav">
-          {nav.map(([label, Icon], i) => <a className={i === 0 ? "active" : ""} href="#" key={label}><Icon size={18} /><span>{label}</span>{label === "Labs" && <em>New</em>}</a>)}
+          {nav.map(({ label, Icon }, i) => <a className={i === 0 ? "active" : ""} href="#" key={label}><Icon size={18} /><span>{label}</span>{label === "Labs" && <em>New</em>}</a>)}
         </nav>
         <div className="sidebar-bottom">
           <button onClick={() => setAiOpen(true)} className="ai-side"><Sparkles size={17}/><span>Ask Skill IT AI</span><ChevronRight size={15}/></button>
@@ -77,7 +95,12 @@ export default function DashboardPage() {
           </section>
 
           <section className="stats-grid">
-            {[ ["Courses", "4", "2 active now", BookOpen], ["Lessons", "48/65", "17 remaining", Play], ["Labs", "17/24", "3 recommended", FlaskConical], ["Attendance", "92%", "On track", CalendarDays] ].map(([label, value, sub, Icon]) => <div className="stat-card" key={String(label)}><div className="stat-icon"><Icon size={18}/></div><div><span>{label}</span><strong>{value}</strong><small>{sub}</small></div></div>)}
+            {stats.map(({ label, value, sub, Icon }) => (
+              <div className="stat-card" key={label}>
+                <div className="stat-icon"><Icon size={18}/></div>
+                <div><span>{label}</span><strong>{value}</strong><small>{sub}</small></div>
+              </div>
+            ))}
           </section>
 
           <section className="section-block">
@@ -98,7 +121,13 @@ export default function DashboardPage() {
               <div className="event"><div className="event-time"><strong>08:00</strong><span>PM</span></div><div><strong>Linux Security Lab</strong><p>Permissions and privilege management</p><span className="event-tag">PRACTICAL LAB</span></div><button>Open <ArrowRight size={14}/></button></div>
             </div>
             <div className="section-block card-panel"><div className="section-head"><div><p className="eyebrow">Recommended</p><h2>Next best actions</h2></div><BrainCircuit size={19}/></div>
-              {[ ["Complete SIEM Log Analysis", "25 min", FlaskConical], ["Practice 10 Python problems", "35 min", Code2], ["Take Cyber Security checkpoint", "15 min", Target] ].map(([name,time,Icon]) => <a className="recommend" href="#" key={String(name)}><div className="recommend-icon"><Icon size={17}/></div><div><strong>{name}</strong><span><Clock3 size={13}/> {time}</span></div><ChevronRight size={17}/></a>)}
+              {nextActions.map(({ name, time, Icon }) => (
+                <a className="recommend" href="#" key={name}>
+                  <div className="recommend-icon"><Icon size={17}/></div>
+                  <div><strong>{name}</strong><span><Clock3 size={13}/> {time}</span></div>
+                  <ChevronRight size={17}/>
+                </a>
+              ))}
             </div>
           </section>
 
