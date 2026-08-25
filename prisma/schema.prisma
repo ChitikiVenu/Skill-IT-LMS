@@ -1,0 +1,109 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role { STUDENT INSTRUCTOR ADMIN }
+enum Track { CYBER_SECURITY SOC AI_DATA SCIENCE }
+enum LessonType { VIDEO READING LAB }
+
+enum ProgressStatus { NOT_STARTED IN_PROGRESS COMPLETED }
+
+model User {
+  id          String       @id @default(cuid())
+  name        String
+  email       String       @unique
+  role        Role         @default(STUDENT)
+  avatarUrl   String?
+  createdAt   DateTime     @default(now())
+  enrollments Enrollment[]
+  progress    LessonProgress[]
+  submissions AssignmentSubmission[]
+  skillScores SkillScore[]
+}
+
+model Course {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  description String
+  track       Track
+  level       String
+  thumbnail   String?
+  published   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  modules     Module[]
+  enrollments Enrollment[]
+}
+
+model Module {
+  id       String   @id @default(cuid())
+  title    String
+  position Int
+  courseId String
+  course   Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons  Lesson[]
+  @@unique([courseId, position])
+}
+
+model Lesson {
+  id          String       @id @default(cuid())
+  title       String
+  slug        String
+  type        LessonType   @default(VIDEO)
+  description String?
+  contentUrl  String?
+  durationMin Int?
+  position    Int
+  moduleId    String
+  module      Module       @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  progress    LessonProgress[]
+  @@unique([moduleId, position])
+}
+
+model Enrollment {
+  id        String   @id @default(cuid())
+  userId    String
+  courseId  String
+  enrolledAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  @@unique([userId, courseId])
+}
+
+model LessonProgress {
+  id        String         @id @default(cuid())
+  userId    String
+  lessonId  String
+  status    ProgressStatus @default(NOT_STARTED)
+  percent   Int            @default(0)
+  updatedAt DateTime       @updatedAt
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson    Lesson         @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  @@unique([userId, lessonId])
+}
+
+model AssignmentSubmission {
+  id         String   @id @default(cuid())
+  userId     String
+  title      String
+  content    String
+  score      Int?
+  aiFeedback String?
+  submittedAt DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model SkillScore {
+  id        String   @id @default(cuid())
+  userId    String
+  track     Track
+  score     Int      @default(0)
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([userId, track])
+}
