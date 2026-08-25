@@ -1,4 +1,5 @@
 import { ArrowRight, BrainCircuit, BookOpen, FlaskConical, ShieldCheck, Sparkles, Trophy } from "lucide-react";
+import Link from "next/link";
 
 const tracks = [
   { title: "Cyber Security", description: "Linux, networking, web security, CTFs and security projects.", icon: ShieldCheck, progress: 72 },
@@ -35,12 +36,12 @@ export default function Home() {
             Skill IT combines structured courses, practical labs, projects and an AI learning coach for Cyber Security, SOC, AI and Data Science.
           </p>
           <div style={{ display: "flex", gap: 12, marginTop: 24, flexWrap: "wrap" }}>
-            <button style={{ border: 0, background: "#101828", color: "#fff", padding: "12px 16px", borderRadius: 12, fontWeight: 700, cursor: "pointer" }}>
+            <Link href="/dashboard" style={{ border: 0, background: "#101828", color: "#fff", padding: "12px 16px", borderRadius: 12, fontWeight: 700 }}>
               Open Dashboard <ArrowRight size={16} style={{ verticalAlign: "middle", marginLeft: 6 }} />
-            </button>
-            <button style={{ border: "1px solid var(--line)", background: "#fff", color: "var(--foreground)", padding: "12px 16px", borderRadius: 12, fontWeight: 700, cursor: "pointer" }}>
+            </Link>
+            <Link href="/ai" style={{ border: "1px solid var(--line)", background: "#fff", color: "var(--foreground)", padding: "12px 16px", borderRadius: 12, fontWeight: 700 }}>
               Ask Skill IT AI
-            </button>
+            </Link>
           </div>
         </div>
       </section>
